@@ -469,8 +469,6 @@ void AnimTask_UnusedLevelUpHealthBox(u8 taskId)
     gSprites[spriteId4].callback = SpriteCallbackDummy;
 
     GetBattleAnimBg1Data(&animBgData);
-    AnimLoadCompressedBgTilemap(animBgData.bgId, UnusedLevelupAnimationTilemap);
-    AnimLoadCompressedBgGfx(animBgData.bgId, UnusedLevelupAnimationGfx, animBgData.tilesOffset);
     LoadCompressedPalette(gCureBubblesPal, BG_PLTT_ID(animBgData.paletteId), PLTT_SIZE_4BPP);
 
     gBattle_BG1_X = -gSprites[spriteId3].x + 32;
