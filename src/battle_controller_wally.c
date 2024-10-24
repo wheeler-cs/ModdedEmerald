@@ -70,10 +70,6 @@ static void WallyHandleTwoReturnValues(void);
 static void WallyHandleChosenMonReturnValue(void);
 static void WallyHandleOneReturnValue(void);
 static void WallyHandleOneReturnValue_Duplicate(void);
-static void WallyHandleClearUnkVar(void);
-static void WallyHandleSetUnkVar(void);
-static void WallyHandleClearUnkFlag(void);
-static void WallyHandleToggleUnkFlag(void);
 static void WallyHandleHitAnimation(void);
 static void WallyHandleCantSwitch(void);
 static void WallyHandlePlaySE(void);
@@ -139,10 +135,6 @@ static void (*const sWallyBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
     [CONTROLLER_CHOSENMONRETURNVALUE]     = WallyHandleChosenMonReturnValue,
     [CONTROLLER_ONERETURNVALUE]           = WallyHandleOneReturnValue,
     [CONTROLLER_ONERETURNVALUE_DUPLICATE] = WallyHandleOneReturnValue_Duplicate,
-    [CONTROLLER_CLEARUNKVAR]              = WallyHandleClearUnkVar,
-    [CONTROLLER_SETUNKVAR]                = WallyHandleSetUnkVar,
-    [CONTROLLER_CLEARUNKFLAG]             = WallyHandleClearUnkFlag,
-    [CONTROLLER_TOGGLEUNKFLAG]            = WallyHandleToggleUnkFlag,
     [CONTROLLER_HITANIMATION]             = WallyHandleHitAnimation,
     [CONTROLLER_CANTSWITCH]               = WallyHandleCantSwitch,
     [CONTROLLER_PLAYSE]                   = WallyHandlePlaySE,
@@ -229,7 +221,7 @@ static void WallyHandleActions(void)
         {
             PlaySE(SE_SELECT);
             ActionSelectionDestroyCursorAt(0);
-            ActionSelectionCreateCursorAt(1, 0);
+            ActionSelectionCreateCursorAt(1);
             gBattleStruct->wallyWaitFrames = B_WAIT_TIME_LONG;
             gBattleStruct->wallyBattleState++;
         }
@@ -344,7 +336,7 @@ static void Intro_WaitForShinyAnimAndHealthbox(void)
 
 static void CompleteOnHealthbarDone(void)
 {
-    s16 hpValue = MoveBattleBar(gActiveBattler, gHealthboxSpriteIds[gActiveBattler], HEALTH_BAR, 0);
+    s16 hpValue = MoveBattleBar(gActiveBattler, gHealthboxSpriteIds[gActiveBattler], HEALTH_BAR);
 
     SetHealthboxSpriteVisible(gHealthboxSpriteIds[gActiveBattler]);
 
@@ -1210,7 +1202,7 @@ static void WallyHandleChooseAction(void)
     for (i = 0; i < 4; i++)
         ActionSelectionDestroyCursorAt(i);
 
-    ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
+    ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler]);
     BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillWallyDo);
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_ACTION_PROMPT);
 }
@@ -1269,7 +1261,7 @@ static void WallyHandleHealthBarUpdate(void)
 {
     s16 hpVal;
 
-    LoadBattleBarGfx(0);
+    LoadBattleBarGfx();
     hpVal = gBattleBufferA[gActiveBattler][2] | (gBattleBufferA[gActiveBattler][3] << 8);
 
     if (hpVal != INSTANT_HP_BAR_DROP)
@@ -1346,26 +1338,6 @@ static void WallyHandleOneReturnValue(void)
 }
 
 static void WallyHandleOneReturnValue_Duplicate(void)
-{
-    WallyBufferExecCompleted();
-}
-
-static void WallyHandleClearUnkVar(void)
-{
-    WallyBufferExecCompleted();
-}
-
-static void WallyHandleSetUnkVar(void)
-{
-    WallyBufferExecCompleted();
-}
-
-static void WallyHandleClearUnkFlag(void)
-{
-    WallyBufferExecCompleted();
-}
-
-static void WallyHandleToggleUnkFlag(void)
 {
     WallyBufferExecCompleted();
 }

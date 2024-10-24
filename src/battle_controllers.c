@@ -16,7 +16,6 @@
 static EWRAM_DATA u8 sLinkSendTaskId = 0;
 static EWRAM_DATA u8 sLinkReceiveTaskId = 0;
 static EWRAM_DATA u8 sUnused = 0; // Debug? Never read
-EWRAM_DATA struct UnusedControllerStruct gUnusedControllerStruct = {}; // Debug? Unused code that writes to it, never read
 static EWRAM_DATA u8 sBattleBuffersTransferData[0x100] = {};
 
 static void CreateTasksForSendRecvLinkBuffers(void);
@@ -1335,40 +1334,6 @@ void BtlController_EmitOneReturnValue_Duplicate(u8 bufferId, u16 ret)
     sBattleBuffersTransferData[1] = ret;
     sBattleBuffersTransferData[2] = (ret & 0xFF00) >> 8;
     sBattleBuffersTransferData[3] = 0;
-    PrepareBufferDataTransfer(bufferId, sBattleBuffersTransferData, 4);
-}
-
-static void UNUSED BtlController_EmitClearUnkVar(u8 bufferId)
-{
-    sBattleBuffersTransferData[0] = CONTROLLER_CLEARUNKVAR;
-    sBattleBuffersTransferData[1] = CONTROLLER_CLEARUNKVAR;
-    sBattleBuffersTransferData[2] = CONTROLLER_CLEARUNKVAR;
-    sBattleBuffersTransferData[3] = CONTROLLER_CLEARUNKVAR;
-    PrepareBufferDataTransfer(bufferId, sBattleBuffersTransferData, 4);
-}
-
-static void UNUSED BtlController_EmitSetUnkVar(u8 bufferId, u8 b)
-{
-    sBattleBuffersTransferData[0] = CONTROLLER_SETUNKVAR;
-    sBattleBuffersTransferData[1] = b;
-    PrepareBufferDataTransfer(bufferId, sBattleBuffersTransferData, 2);
-}
-
-static void UNUSED BtlController_EmitClearUnkFlag(u8 bufferId)
-{
-    sBattleBuffersTransferData[0] = CONTROLLER_CLEARUNKFLAG;
-    sBattleBuffersTransferData[1] = CONTROLLER_CLEARUNKFLAG;
-    sBattleBuffersTransferData[2] = CONTROLLER_CLEARUNKFLAG;
-    sBattleBuffersTransferData[3] = CONTROLLER_CLEARUNKFLAG;
-    PrepareBufferDataTransfer(bufferId, sBattleBuffersTransferData, 4);
-}
-
-static void UNUSED BtlController_EmitToggleUnkFlag(u8 bufferId)
-{
-    sBattleBuffersTransferData[0] = CONTROLLER_TOGGLEUNKFLAG;
-    sBattleBuffersTransferData[1] = CONTROLLER_TOGGLEUNKFLAG;
-    sBattleBuffersTransferData[2] = CONTROLLER_TOGGLEUNKFLAG;
-    sBattleBuffersTransferData[3] = CONTROLLER_TOGGLEUNKFLAG;
     PrepareBufferDataTransfer(bufferId, sBattleBuffersTransferData, 4);
 }
 

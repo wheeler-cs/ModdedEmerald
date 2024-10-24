@@ -61,10 +61,6 @@ static void SafariHandleTwoReturnValues(void);
 static void SafariHandleChosenMonReturnValue(void);
 static void SafariHandleOneReturnValue(void);
 static void SafariHandleOneReturnValue_Duplicate(void);
-static void SafariHandleClearUnkVar(void);
-static void SafariHandleSetUnkVar(void);
-static void SafariHandleClearUnkFlag(void);
-static void SafariHandleToggleUnkFlag(void);
 static void SafariHandleHitAnimation(void);
 static void SafariHandleCantSwitch(void);
 static void SafariHandlePlaySE(void);
@@ -125,10 +121,6 @@ static void (*const sSafariBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
     [CONTROLLER_CHOSENMONRETURNVALUE]     = SafariHandleChosenMonReturnValue,
     [CONTROLLER_ONERETURNVALUE]           = SafariHandleOneReturnValue,
     [CONTROLLER_ONERETURNVALUE_DUPLICATE] = SafariHandleOneReturnValue_Duplicate,
-    [CONTROLLER_CLEARUNKVAR]              = SafariHandleClearUnkVar,
-    [CONTROLLER_SETUNKVAR]                = SafariHandleSetUnkVar,
-    [CONTROLLER_CLEARUNKFLAG]             = SafariHandleClearUnkFlag,
-    [CONTROLLER_TOGGLEUNKFLAG]            = SafariHandleToggleUnkFlag,
     [CONTROLLER_HITANIMATION]             = SafariHandleHitAnimation,
     [CONTROLLER_CANTSWITCH]               = SafariHandleCantSwitch,
     [CONTROLLER_PLAYSE]                   = SafariHandlePlaySE,
@@ -197,7 +189,7 @@ static void HandleInputChooseAction(void)
             PlaySE(SE_SELECT);
             ActionSelectionDestroyCursorAt(gActionSelectionCursor[gActiveBattler]);
             gActionSelectionCursor[gActiveBattler] ^= 1;
-            ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
+            ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler]);
         }
     }
     else if (JOY_NEW(DPAD_RIGHT))
@@ -207,7 +199,7 @@ static void HandleInputChooseAction(void)
             PlaySE(SE_SELECT);
             ActionSelectionDestroyCursorAt(gActionSelectionCursor[gActiveBattler]);
             gActionSelectionCursor[gActiveBattler] ^= 1;
-            ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
+            ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler]);
         }
     }
     else if (JOY_NEW(DPAD_UP))
@@ -217,7 +209,7 @@ static void HandleInputChooseAction(void)
             PlaySE(SE_SELECT);
             ActionSelectionDestroyCursorAt(gActionSelectionCursor[gActiveBattler]);
             gActionSelectionCursor[gActiveBattler] ^= 2;
-            ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
+            ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler]);
         }
     }
     else if (JOY_NEW(DPAD_DOWN))
@@ -227,7 +219,7 @@ static void HandleInputChooseAction(void)
             PlaySE(SE_SELECT);
             ActionSelectionDestroyCursorAt(gActionSelectionCursor[gActiveBattler]);
             gActionSelectionCursor[gActiveBattler] ^= 2;
-            ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
+            ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler]);
         }
     }
 }
@@ -456,7 +448,7 @@ static void SafariHandleChooseAction(void)
     for (i = 0; i < 4; i++)
         ActionSelectionDestroyCursorAt(i);
 
-    ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
+    ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler]);
     BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillPkmnDo2);
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_ACTION_PROMPT);
 }
@@ -550,26 +542,6 @@ static void SafariHandleOneReturnValue(void)
 }
 
 static void SafariHandleOneReturnValue_Duplicate(void)
-{
-    SafariBufferExecCompleted();
-}
-
-static void SafariHandleClearUnkVar(void)
-{
-    SafariBufferExecCompleted();
-}
-
-static void SafariHandleSetUnkVar(void)
-{
-    SafariBufferExecCompleted();
-}
-
-static void SafariHandleClearUnkFlag(void)
-{
-    SafariBufferExecCompleted();
-}
-
-static void SafariHandleToggleUnkFlag(void)
 {
     SafariBufferExecCompleted();
 }

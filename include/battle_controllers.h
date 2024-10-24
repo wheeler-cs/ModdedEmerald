@@ -15,10 +15,6 @@ enum {
     REQUEST_PPMOVE2_BATTLE,
     REQUEST_PPMOVE3_BATTLE,
     REQUEST_PPMOVE4_BATTLE,
-    REQUEST_UNUSED_13_BATTLE,
-    REQUEST_UNUSED_14_BATTLE,
-    REQUEST_UNUSED_15_BATTLE,
-    REQUEST_UNUSED_16_BATTLE,
     REQUEST_OTID_BATTLE,
     REQUEST_EXP_BATTLE,
     REQUEST_HP_EV_BATTLE,
@@ -99,12 +95,6 @@ enum {
 // Special return values in gBattleBufferB from Battle Controller functions.
 #define RET_VALUE_LEVELED_UP   11
 
-struct UnusedControllerStruct
-{
-    u8 unk:7;
-    u8 flag:1;
-};
-
 struct HpAndStatus
 {
     u16 hp;
@@ -166,10 +156,6 @@ enum
     CONTROLLER_CHOSENMONRETURNVALUE,
     CONTROLLER_ONERETURNVALUE,
     CONTROLLER_ONERETURNVALUE_DUPLICATE,
-    CONTROLLER_CLEARUNKVAR,
-    CONTROLLER_SETUNKVAR,
-    CONTROLLER_CLEARUNKFLAG,
-    CONTROLLER_TOGGLEUNKFLAG,
     CONTROLLER_HITANIMATION,
     CONTROLLER_CANTSWITCH,
     CONTROLLER_PLAYSE,
@@ -189,8 +175,6 @@ enum
     CONTROLLER_TERMINATOR_NOP,
     CONTROLLER_CMDS_COUNT
 };
-
-extern struct UnusedControllerStruct gUnusedControllerStruct;
 
 // general functions
 void HandleLinkBattleSetup(void);
@@ -252,7 +236,7 @@ void SpriteCB_FreePlayerSpriteLoadMonSprite(struct Sprite *sprite);
 void CB2_SetUpReshowBattleScreenAfterMenu(void);
 void CB2_SetUpReshowBattleScreenAfterMenu2(void);
 void Task_PlayerController_RestoreBgmAfterCry(u8 taskId);
-void ActionSelectionCreateCursorAt(u8 cursorPos, u8 unused);
+void ActionSelectionCreateCursorAt(u8 cursorPos);
 void ActionSelectionDestroyCursorAt(u8 cursorPos);
 void InitMoveSelectionsVarsAndStrings(void);
 

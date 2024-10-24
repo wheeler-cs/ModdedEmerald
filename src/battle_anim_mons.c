@@ -917,7 +917,6 @@ void GetBattleAnimBg1Data(struct BattleAnimBgData *out)
         out->paletteId = BG_ANIM_PAL_CONTEST;
         out->bgId = 1;
         out->tilesOffset = 0;
-        out->unused = 0;
     }
     else
     {
@@ -926,7 +925,6 @@ void GetBattleAnimBg1Data(struct BattleAnimBgData *out)
         out->paletteId = BG_ANIM_PAL_1;
         out->bgId = 1;
         out->tilesOffset = 0x200;
-        out->unused = 0;
     }
 }
 
@@ -939,7 +937,6 @@ void GetBattleAnimBgData(struct BattleAnimBgData *out, u32 bgId)
         out->paletteId = BG_ANIM_PAL_CONTEST;
         out->bgId = 1;
         out->tilesOffset = 0;
-        out->unused = 0;
     }
     else if (bgId == 1)
     {
@@ -952,7 +949,6 @@ void GetBattleAnimBgData(struct BattleAnimBgData *out, u32 bgId)
         out->paletteId = BG_ANIM_PAL_2;
         out->bgId = 2;
         out->tilesOffset = 0x300;
-        out->unused = 0;
     }
 }
 
@@ -965,21 +961,18 @@ void GetBgDataForTransform(struct BattleAnimBgData *out, u8 battlerId)
         out->paletteId = BG_ANIM_PAL_CONTEST;
         out->bgId = 1;
         out->tilesOffset = 0;
-        out->unused = 0;
     }
     else if (GetBattlerSpriteBGPriorityRank(gBattleAnimAttacker) == 1)
     {
         out->paletteId = BG_ANIM_PAL_1;
         out->bgId = 1;
         out->tilesOffset = 0x200;
-        out->unused = 0;
     }
     else
     {
         out->paletteId = BG_ANIM_PAL_2;
         out->bgId = 2;
         out->tilesOffset = 0x300;
-        out->unused = 0;
     }
 }
 
