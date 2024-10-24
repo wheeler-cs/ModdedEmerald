@@ -1,5 +1,6 @@
 # Pokémon Emerald
 
+## Information
 This is a decompilation of Pokémon Emerald.
 
 It builds the following ROM:
@@ -9,3 +10,14 @@ It builds the following ROM:
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
 For contacts and other pret projects, see [pret.github.io](https://pret.github.io/).
+
+## Roadmap
+### Phase 1 - Fixes and Unused Content
+- Ensure bug fixes are implemented.
+- Introduce simple optimizations.
+- Remove unused content.
+
+### Phase 2 - Pokedex Completion
+- [ ] Hoenn
+- [ ] Kanto
+- [ ] Johto
