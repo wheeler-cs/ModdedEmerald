@@ -93,9 +93,6 @@ static bool8 ShouldSwitchIfWonderGuard(void)
         if (i == gBattlerPartyIndexes[gActiveBattler])
             continue;
 
-        GetMonData(&party[i], MON_DATA_SPECIES); // Unused return value.
-        GetMonData(&party[i], MON_DATA_ABILITY_NUM); // Unused return value.
-
         for (opposingBattler = GetBattlerAtPosition(opposingPosition), j = 0; j < MAX_MON_MOVES; j++)
         {
             move = GetMonData(&party[i], MON_DATA_MOVE1 + j);
