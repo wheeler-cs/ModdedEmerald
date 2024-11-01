@@ -1908,17 +1908,23 @@ static void ResetHPTaskData(u8 taskId, u8 caseId, u32 hp)
 
 u8 GetAilmentFromStatus(u32 status)
 {
-    if (status & STATUS1_PSN_ANY)
-        return AILMENT_PSN;
-    if (status & STATUS1_PARALYSIS)
-        return AILMENT_PRZ;
-    if (status & STATUS1_SLEEP)
-        return AILMENT_SLP;
-    if (status & STATUS1_FREEZE)
-        return AILMENT_FRZ;
-    if (status & STATUS1_BURN)
-        return AILMENT_BRN;
-    return AILMENT_NONE;
+    switch(status & 0xFF)
+    {
+        case STATUS1_NONE:
+            return AILMENT_NONE;
+        case STATUS1_POISON:
+            return AILMENT_PSN;
+        case STATUS1_TOXIC_POISON:
+            return AILMENT_PSN;
+        case STATUS1_PARALYSIS:
+            return AILMENT_PRZ;
+        case STATUS1_FREEZE:
+            return AILMENT_FRZ;
+        case STATUS1_BURN:
+            return AILMENT_BRN;
+        default: // Sleep is the only status with multiple bits
+            return AILMENT_SLP;
+    }
 }
 
 u8 GetMonAilment(struct Pokemon *mon)
