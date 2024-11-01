@@ -3861,9 +3861,6 @@ static void CreateDodrioSprite(struct DodrioGame_MonInfo * monInfo, u8 playerId,
 
 #define sState   data[0]
 #define sTimer   data[1]
-#define sUnused1 data[2]
-#define sUnused2 data[3]
-#define sUnused3 data[4]
 
 static void SpriteCB_Dodrio(struct Sprite *sprite)
 {
@@ -3885,9 +3882,6 @@ static void StartDodrioMissedAnim(u8 unused)
     struct Sprite *sprite = &gSprites[*sDodrioSpriteIds[GetMultiplayerId()]];
     sprite->sState = 1;
     sprite->sTimer = 0;
-    sprite->sUnused1 = 0;
-    sprite->sUnused2 = 0;
-    sprite->sUnused3 = 0;
 }
 
 static void StartDodrioIntroAnim(u8 unused)
@@ -3895,9 +3889,6 @@ static void StartDodrioIntroAnim(u8 unused)
     struct Sprite *sprite = &gSprites[*sDodrioSpriteIds[GetMultiplayerId()]];
     sprite->sState = 2;
     sprite->sTimer = 0;
-    sprite->sUnused1 = 0;
-    sprite->sUnused2 = 0;
-    sprite->sUnused3 = 0;
 }
 
 // Do animation where Dodrio shakes horizontally after reaching for a berry and missing
@@ -3955,9 +3946,6 @@ static u32 DoDodrioIntroAnim(struct Sprite *sprite)
 
 #undef sState
 #undef sTimer
-#undef sUnused1
-#undef sUnused2
-#undef sUnused3
 
 static void FreeDodrioSprites(u8 numPlayers)
 {
